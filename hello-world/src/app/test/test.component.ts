@@ -3,45 +3,16 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-test',
   template: `<div>
-    {{ greetUser() }}
-    <h2 [style.color]="hasError ? 'red' : 'green'">Text</h2>
-    <h2 [ngClass]="messageClasses">Codevolution</h2>
-    <input
-      #myInput
-      type="text"
-      class="text-success"
-      value="Sterling"
-      [disabled]="isDisabled"
-    />
-    <h2 [style.color]="highlightColor">Codevolution 2</h2>
-    <h2 [ngStyle]="titleStyles">Codevolution 2</h2>
-    <button (click)="greeting = 'Welcome Message'">Greet</button>
-    {{ greeting }}
-    <button (click)="logMessage(myInput.value)">Test Print</button>
-    <input [(ngModel)]="name" type="text" />
-    {{ name }}
-
-    <h2 *ngIf="displayName; then thenBlock; else elseBlock">ngIf Block</h2>
-    <ng-template #thenBlock> Then block </ng-template>
-    <ng-template #elseBlock> -Else Blog </ng-template>
-
-    <div [ngSwitch]="color">
-      <h2 *ngSwitchCase="'red'">Red</h2>
-      <h2 *ngSwitchCase="'blue'">Blue</h2>
-      <h2 *ngSwitchCase="'green'">Green</h2>
-      <h2 *ngSwitchDefault>You need to choose</h2>
-    </div>
-
-    <div *ngFor="let color of colors; odd as o; index as i">
-      <h2>{{ i }}: {{ color }} - {{ o }}</h2>
-    </div>
-
-    <h2>Hello from {{ parentData }}</h2>
-    <button (click)="fireEvent()">Fire Event</button>
+    <h2>{{ date | date: 'shortTime' }}</h2>
   </div>`,
   styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
+  public date = new Date();
+  public person = {
+    name: 'Sterling',
+    role: 'Fullstack Developer',
+  };
   @Output() public childEvent = new EventEmitter();
   @Input() public parentData: any;
   public color = 'red';
